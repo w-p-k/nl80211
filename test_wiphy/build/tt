@@ -1,0 +1,32 @@
+gcc -c  -I/usr/include/libnl3 -o ../build/test_wiphy.o ../src/test_wiphy.c
+../src/test_wiphy.c: In function ‘do_wiphy’:
+../src/test_wiphy.c:207:39: error: incompatible type for argument 1 of ‘get_nl80211_protocol_features’
+  feat = get_nl80211_protocol_features(global);
+                                       ^~~~~~
+../src/test_wiphy.c:183:12: note: expected ‘struct nl80211_global *’ but argument is of type ‘struct nl80211_global’
+ static u32 get_nl80211_protocol_features(struct nl80211_global *global)
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/test_wiphy.c: In function ‘nl_create_handle’:
+../src/test_wiphy.c:223:3: warning: implicit declaration of function ‘nl_handle_destroy’ [-Wimplicit-function-declaration]
+   nl_handle_destroy(socket);
+   ^~~~~~~~~~~~~~~~~
+../src/test_wiphy.c: In function ‘init_nl_global’:
+../src/test_wiphy.c:237:21: warning: implicit declaration of function ‘if_nametoindex’ [-Wimplicit-function-declaration]
+      int if_index = if_nametoindex("wlan0");
+                     ^~~~~~~~~~~~~~
+../src/test_wiphy.c:249:23: warning: implicit declaration of function ‘gen_ctrl_resolve’; did you mean ‘nl_addr_resolve’? [-Wimplicit-function-declaration]
+  global->nl80211_id = gen_ctrl_resolve(global->nl, "nl80211");
+                       ^~~~~~~~~~~~~~~~
+                       nl_addr_resolve
+../src/test_wiphy.c:261:3: warning: implicit declaration of function ‘nl_handle_destory’ [-Wimplicit-function-declaration]
+   nl_handle_destory(global->nl);
+   ^~~~~~~~~~~~~~~~~
+../src/test_wiphy.c: In function ‘main’:
+../src/test_wiphy.c:279:25: error: incompatible type for argument 1 of ‘do_wiphy’
+      int err = do_wiphy(&global_drv);
+                         ^
+../src/test_wiphy.c:203:5: note: expected ‘struct nl80211_global’ but argument is of type ‘struct nl80211_global *’
+ int do_wiphy(struct nl80211_global global)
+     ^~~~~~~~
+Makefile:44: recipe for target '../build/test_wiphy.o' failed
+make: *** [../build/test_wiphy.o] Error 1
